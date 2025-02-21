@@ -8,16 +8,7 @@ Vector2 window = {1920, 1080};
 int horloge_heure = 6;
 int horloge_min = 9;
 
-typedef struct Conversation {
-    int active;
-    Texture pp;
-    char name[10];
-    char message[22];
-} Conversation;
-
-#define MAX_CONV 5
-Conversation conversations[MAX_CONV] = {0};
-int conversation_idx = 0;
+#include "histoire.h"
 
 #define CHOIX_PAD 2
 #define CHOIX_COLOR WHITE
@@ -197,30 +188,7 @@ int main()
     Texture phone_battery_tex = LoadTexture("data/phone-battery.png");
     Texture left_arrow_tex = LoadTexture("data/left-arrow.png");
 
-    conversations[0].active = 1;
-    conversations[0].pp = LoadTexture("data/viola.png");
-    strncpy(conversations[0].name, "Viola", 10);
-    strncpy(conversations[0].message, "Salam Akhy.", 22);
-
-    conversations[1].active = 1;
-    conversations[1].pp = LoadTexture("data/archie.png");
-    strncpy(conversations[1].name, "Archie", 10);
-    strncpy(conversations[1].message, "Je te fait pas con...", 22);
-
-    conversations[2].active = 1;
-    conversations[2].pp = LoadTexture("data/minuit.png");
-    strncpy(conversations[2].name, "Minuit", 10);
-    strncpy(conversations[2].message, "je suis Minuit.", 22);
-
-    conversations[3].active = 1;
-    conversations[3].pp = LoadTexture("data/phillip.png");
-    strncpy(conversations[3].name, "Phillip", 10);
-    strncpy(conversations[3].message, "je suis Phillip.", 22);
-
-    conversations[4].active = 1;
-    conversations[4].pp = LoadTexture("data/ed.png");
-    strncpy(conversations[4].name, "Ed", 10);
-    strncpy(conversations[4].message, "je suis Ed.", 22);
+    init_personnes();
 
     while (!WindowShouldClose()) {
         if (IsWindowResized()) {
@@ -263,30 +231,36 @@ int main()
                 float size = header_box.height*0.42;
                 DrawText("Chat", header_box.x + header_box.width/2 - MeasureText("Chat", size)/2, header_box.y + size, size, WHITE);
 
-                for (int i = 0; i < MAX_CONV; i++) {
-                    if (!conversations[i].active) continue;
+                int active_personne = 0;
+                for (int i = 0; i < MAX_PERSONNE; i++) {
+                    if (!personnes[i].active) continue;
                     Rectangle conv_box = {
                         phone_box.x,
-                        header_box.y+header_box.height + i*phone_box.height*0.1,
+                        header_box.y+header_box.height + active_personne*phone_box.height*0.1,
                         phone_box.width,
                         phone_box.height*0.1,
                     };
-                    float conv_scale = conv_box.height/conversations[i].pp.height;
+                    float conv_scale = conv_box.height/personnes[i].pp.height;
+                    active_personne++;
 
                     if (CheckCollisionPointRec(GetMousePosition(), conv_box))
                         DrawRectangleRec(conv_box, LIGHTGRAY);
                     else
                         DrawRectangleRec(conv_box, GRAY);
 
-                    DrawTextureEx(conversations[i].pp, (Vector2){conv_box.x, conv_box.y}, 0, conv_scale, WHITE);
+                    DrawTextureEx(personnes[i].pp, (Vector2){conv_box.x, conv_box.y}, 0, conv_scale, WHITE);
 
                     float name_size = 0.27*conv_box.height;
-                    DrawText(conversations[i].name, conv_box.x+conversations[i].pp.width*conv_scale+name_size, conv_box.y+name_size/2, name_size, GOLD);
-                    DrawText(conversations[i].message, conv_box.x+conversations[i].pp.width*conv_scale+name_size, conv_box.y+conv_box.height-name_size*1.5, name_size, WHITE);
+                    DrawText(personnes[i].name, conv_box.x+personnes[i].pp.width*conv_scale+name_size, conv_box.y+name_size/2, name_size, GOLD);
+                    unsigned int max_char = 33;
+                    if (personnes[i].message && strlen(personnes[i].message) >= max_char)
+                        DrawText(TextFormat("%.*s...", max_char-3, personnes[i].message), conv_box.x+personnes[i].pp.width*conv_scale+name_size, conv_box.y+conv_box.height-name_size*1.5, name_size, WHITE);
+                    else
+                        DrawText(personnes[i].message, conv_box.x+personnes[i].pp.width*conv_scale+name_size, conv_box.y+conv_box.height-name_size*1.5, name_size, WHITE);
 
                     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), conv_box)) {
                         choix_active = !choix_active;
-                        conversation_idx = i;
+                        personne_idx = i;
                     }
                 }
             }
@@ -303,15 +277,15 @@ int main()
                 if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && CheckCollisionPointRec(GetMousePosition(), left_arrow_box))
                     choix_active = !choix_active;
 
-                float pp_scale = (header_box.height-notif_box.height-header_box.height*0.12)/conversations[conversation_idx].pp.height;
+                float pp_scale = (header_box.height-notif_box.height-header_box.height*0.12)/personnes[personne_idx].pp.height;
                 Rectangle pp_box = left_arrow_box;
                 pp_box.x += pp_box.width*1.42;
-                DrawTextureEx(conversations[conversation_idx].pp, (Vector2){pp_box.x, pp_box.y}, 0, pp_scale, WHITE);
+                DrawTextureEx(personnes[personne_idx].pp, (Vector2){pp_box.x, pp_box.y}, 0, pp_scale, WHITE);
 
                 float name_size = 0.42*pp_box.height;
                 DrawText(
-                    conversations[conversation_idx].name,
-                    pp_box.x+conversations[conversation_idx].pp.width*pp_scale+name_size,
+                    personnes[personne_idx].name,
+                    pp_box.x+personnes[personne_idx].pp.width*pp_scale+name_size,
                     pp_box.y+pp_box.height/2-name_size/2,
                     name_size, GOLD
                 );
