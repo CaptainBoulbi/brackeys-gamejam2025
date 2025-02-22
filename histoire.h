@@ -368,4 +368,95 @@ Histoire histoire = {
         }
         .next = {12, 13}
     },
+
+    [12] = {
+            .personne = ARCHIE,
+            .nb_conversation = 1,
+            .conversations = {
+                {
+                    2.0f, 1.0f, "Enchanté", 0, {},
+                },
+        }
+        .next = {14}
+    },
+
+    [13] = {
+            .personne = ARCHIE,
+            .nb_conversation = 2,
+            .conversations = {
+                {
+                    2.0f, 1.0f, "Je suis le garde du corps de Minuit", 0, {},
+                },
+                {
+                    2.0f, 1.0f, "Donc je le suis partout où il va", 0, {},
+                },
+        }
+        .next = {14}
+    },
+
+    [14] = {
+            .personne = ARCHIE,
+            .nb_conversation = 3,
+            .conversations = {
+                {
+                    2.0f, 1.0f, "D'ailleurs, on dirait que les sirènes se sont calmées", 0, {},
+                },
+                {
+                    2.0f, 1.0f, "Et voilà Minuit qui revient", 0, {},
+                },
+                {
+                    2.0f, 1.0f, "Moi je file, bonne chance, il à l'air en colère", 0, {},
+                },
+        }
+        .next = {15}
+    },
+
+    [15] = {
+            .personne = MINUIT,
+            .nb_conversation = 2,
+            .conversations = {
+                {
+                    2.0f, 1.0f, "C'ETAIT VIOLA !!!", 0, {},
+                },
+                {
+                    2.0f, 1.0f, "TOUT CA C'EST DE TA FAUTE ! C'EST TOI QUI LES A APPELES !", 2, {
+                        "QUOI ?! Bien sur que non",
+                        "Calme toi, c'est juste un coup de malchance"
+                    },
+                },
+        }
+        .next = {16, 17}
+    },
+
+    [16] = {
+            .personne = MINUIT,
+            .nb_conversation = 2,
+            .conversations = {
+                {
+                    2.0f, 1.0f, "SI ! Je te faisais pas confiance et j'avais bien raison", 0, {},
+                },
+                {
+                    2.0f, 1.0f, "Si tu es là pour foutre la merde, casse toi", 0, {},
+                },
+
+                // transition : Vous partez, laissant Minuit et Archie décider comment libérer Viola. Merci d'avoir joué à cette démo
+        }
+        .next = {0}
+    },
+
+    [17] = {
+            .personne = MINUIT,
+            .nb_conversation = 2,
+            .conversations = {
+                {
+                    2.0f, 1.0f, "LA MALCHANCE HEIN ?! ELLE APPELLE LES FLICS LA MALCHANCE ??", 0, {},
+                },
+                {
+                    2.0f, 1.0f, "*sors un pistolet laser* TU VA LA REJOINDRE EN ENFER, ORDURE", 0, {},
+                },
+
+                // transition : Minuit tire, vous tuant sur le coup. Merci d'avoir joué à cette démo
+        }
+        .next = {0}
+    }
 };
