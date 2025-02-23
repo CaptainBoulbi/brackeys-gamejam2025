@@ -48,7 +48,7 @@ typedef struct Branche {
     int next[NB_REPONSE_MAX];
 } Branche;
 
-#define NB_BRANCHE 10
+#define NB_BRANCHE 18
 typedef struct Histoire {
     int nb_branche;
     Branche branches[NB_BRANCHE];
@@ -58,63 +58,64 @@ Histoire histoire = {
     .nb_branche = 3,
     .branches = {
 
-        [0] = {
+                [0] = {
             .personne = VIOLA,
             .nb_conversation = 9,
             .conversations = {
-                // transition : 2870, vous arrivez à New Mountain, dans le bar ‘L’Atout’ et vous rencontrez Viola Fowler, en train de boire un verre.
-                [0] = {
-                    1.0f, 2.0f, "On se connait ?", 2, {
-                        "On s'est rencontrés à l'Atout tout à l'heure",
-                        "On a partagé un verre",
+                // transition : 2870, you arrive at New Mountain, in the bar 'L'Atout' and meet Viola Fowler, drinking a glass.
+                {
+                    1.0f, 2.0f, "Do we know each other?", 2, {
+                        "We met at L'Atout earlier",
+                        "We shared a drink",
                     },
                 },
-                [1] = {
-                    2.0f, 1.0f, "Ah oui, je m'en souviens", 0, {}
-
-                    2.0f, 1.0f, "Le type au whisky c'est ça ?", 2, {
-                        "C'est bien ça !",
-                        "Tout à fait",
-                    },
+                {
+                    2.0f, 1.0f, "Oh yes, I remember", 0, {},
                 },
-
-                [2] = {
-                    2.0f, 1.0f, "Parfait", 1, {
-                        "On a commencé à parler après que ton ami soit tombé de sa chaise"
+                {
+                    2.0f, 1.0f, "The guy with the whiskey, right?", 2, {
+                        "That's right!",
+                        "Exactly",
                     },
                 },
 
-                [3] = {
-                    2.0f, 1.0f, "C'est Ed, il tient assez mal l'alcool", 0, {}
-                },
-
-                [4] = {
-                    2.0f, 1.0f, "C'était assez drôle à voir", 0, {}
-                },
-
-                [5] = {
-                    2.0f, 1.0f, "Enfin c'est une personne géniale", 2, {
-                        "J'en suis certain",
-                        "Tout comme toi",
+                {
+                    2.0f, 1.0f, "Perfect", 1, {
+                        "We started talking after your friend fell off his chair"
                     },
                 },
 
-                [6] = {
-                    2.0f, 1.0f, "Tu vois ! Même toi tu l'as remarqué !", 0, {}
+                {
+                    2.0f, 1.0f, "That's Ed, he doesn't handle alcohol very well", 0, {}
                 },
 
-                [7] = {
-                    2.0f, 1.0f, "Bon, je suis désolée de couper court mais je dois aller rejoindre des amis. Tu peux m'envoyer un message vers 22h00, je serai de retour", 2, {
-                        "Pas de soucis",
-                        "D'accord, à toute à l'heure",
+                {
+                    2.0f, 1.0f, "It was quite funny to watch", 0, {}
+                },
+
+                {
+                    2.0f, 1.0f, "Well, he's a great person", 2, {
+                        "I'm sure of it",
+                        "Just like you",
                     },
                 },
 
-                [8] = {
-                    2.0f, 1.0f, "A ce soir", 2, {
-                        // mettre l'heure à 22h
-                        "(Ne rien dire)",
-                        "Je suis là !"
+                {
+                    2.0f, 1.0f, "See! Even you noticed!", 0, {}
+                },
+
+                {
+                    2.0f, 1.0f, "Well, sorry to cut this short, but I have to go meet some friends. You can message me around 10 PM, I'll be back", 2, {
+                        "No problem",
+                        "Alright, see you later",
+                    },
+                },
+
+                {
+                    2.0f, 1.0f, "See you tonight", 2, {
+                        // set time to 10 PM
+                        "(Say nothing)",
+                        "I'm here!"
                     },
                 },
             },
@@ -125,28 +126,28 @@ Histoire histoire = {
             .personne = VIOLA,
             .nb_conversation = 4,
             .conversations = {
-                // mettre l'heure à 22h17
-                [0] = {
-                    2.0f, 1.0f, "Tu es là ?", 2, {
-                        "J'avais du travail",
-                        "J'étais occupé"
+                // set time to 10:17 PM
+                {
+                    2.0f, 1.0f, "Are you there?", 2, {
+                        "I had work",
+                        "I was busy"
                     },
                 },
 
-                [1] = {
-                    2.0f, 1.0f, "Tu es quelqu'un de sérieux donc ?", 0, {}
+                {
+                    2.0f, 1.0f, "So you're a serious person?", 0, {}
                 },
 
-                [2] = {
-                    2.0f, 1.0f, "Tu travailles dans quoi ?", 3, {
-                        "Je suis dans la tech",
-                        "Je suis commercial",
-                        "Je suis encore étudiant",
+                {
+                    2.0f, 1.0f, "What do you do for work?", 3, {
+                        "I'm in tech",
+                        "I'm in sales",
+                        "I'm still a student",
                     },
                 },
 
-                [3] = {
-                    2.0f, 1.0f, "Oh c'est super ça !", 0, {}
+                {
+                    2.0f, 1.0f, "Oh, that's great!", 0, {}
                 },
             },
             .next = {3}
@@ -157,21 +158,21 @@ Histoire histoire = {
             .nb_conversation = 4,
             .conversations = {
                 {
-                    2.0f, 1.0f, "Tu es très ponctuel !", 1, {
-                        "Il faut bien",
+                    2.0f, 1.0f, "You're very punctual!", 1, {
+                        "You have to be",
                     },
                 },
                 {
-                    2.0f, 1.0f, "Des fois il faut quand même prendre son temps", 0, {}
+                    2.0f, 1.0f, "Sometimes you have to take your time", 0, {}
                 },
                 {
-                    2.0f, 1.0f, "Tu as passé une bonne soirée ?", 2, {
-                        "Merdique",
-                        "Mouais et toi ?",
+                    2.0f, 1.0f, "Did you have a good evening?", 2, {
+                        "Awful",
+                        "Meh, and you?",
                     },
                 },
                 {
-                    2.0f, 1.0f, "Espérons qu'on se remonte le moral en discutant alors", 0, {}
+                    2.0f, 1.0f, "Let's hope we cheer up by talking then", 0, {}
                 },
             },
             .next = {3}
@@ -179,28 +180,22 @@ Histoire histoire = {
 
         [3] = {
             .personne = VIOLA,
-            .nb_conversation = 5,
+            .nb_conversation = 4,
             .conversations = {
                 {
-                    2.0f, 1.0f, "Ma soirée été assez mouvementée, on est allés embêter la police", 0, {}
+                    2.0f, 1.0f, "My evening was quite eventful, we went to mess with the police", 0, {}
                 },
                 {
-                    2.0f, 1.0f, "Je fais partie des Purple Sky", 2, {
-                        "Les terroristes ?",
-                        "Le groupe de révolutionnaires ?",
+                    2.0f, 1.0f, "I'm part of the Purple Sky", 2, {
+                        "The terrorists?",
+                        "The revolutionary group?",
                     },
                 },
                 {
-                    2.0f, 1.0f, "Tu as passé une bonne soirée ?", 2, {
-                        "Merdique",
-                        "Mouais et toi ?",
-                    },
+                    2.0f, 1.0f, "I prefer to say 'activist group' but yes, that's us", 0, {}
                 },
                 {
-                    2.0f, 1.0f, "Je préfère dire \"groupe activiste\" mais oui, c'est nous", 0, {}
-                },
-                {
-                    2.0f, 1.0f, "On se bat pour la liberté", 0, {}   
+                    2.0f, 1.0f, "We fight for freedom", 0, {}
                 },
             },
             .next = {4}
@@ -210,24 +205,23 @@ Histoire histoire = {
             .personne = VIOLA,
             .nb_conversation = 3,
             .conversations = {
-                
-                //transition : Une semaine plus tard, vous avez continué de parler avec Viola.
-                //mettre l'heure à 16h
+                // transition : One week later, you continued talking with Viola.
+                // set time to 4:00 PM
                 {
-                    2.0f, 1.0f, "Minuit veut te rencontrer, si tu es d'accord", 2, {
-                        "Minuit ? Qui est-ce ?",
-                        "C'est un ami à toi ?",
+                    2.0f, 1.0f, "Midnight wants to meet you, if you're okay with that", 2, {
+                        "Midnight? Who is that?",
+                        "Is he a friend of yours?",
                     },
                 },
                 {
-                    2.0f, 1.0f, "C'est le chef des Purple Sky", 1, {
-                        "Pourquoi veut-il me voir ?",
+                    2.0f, 1.0f, "He's the leader of the Purple Sky", 1, {
+                        "Why does he want to see me?",
                     },
                 },
                 {
-                    2.0f, 1.0f, "Il s'interesse à toi depuis la soirée à l'Atout", 2, {
-                        "D'accord, il veut me voir quand ?",
-                        "Non je refuse de le rencontrer",
+                    2.0f, 1.0f, "He's been interested in you since the night at L'Atout", 2, {
+                        "Alright, when does he want to meet?",
+                        "No, I refuse to meet him",
                     },
                 },
             },
@@ -239,9 +233,9 @@ Histoire histoire = {
             .nb_conversation = 1,
             .conversations = {
                 {
-                    2.0f, 1.0f, "Rendez-vous derrière l'Atout, à 23h, ce soir", 2, {
-                        "J'y serai",
-                        "OK, à ce soir",
+                    2.0f, 1.0f, "Meet me behind the bar L'Atout at 11pm tonight", 2, {
+                        "I'll be there",
+                        "OK, see you tonight",
                     },
                 },
             },
@@ -253,13 +247,13 @@ Histoire histoire = {
             .nb_conversation = 3,
             .conversations = {
                 {
-                    2.0f, 1.0f, "D'accord, c'est ton choix", 0, {},
+                    2.0f, 1.0f, "Okay, it's your choice", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Je vais devoir supprimer cette discussion dans ce cas", 0, {},
+                    2.0f, 1.0f, "I'll have to delete this discussion then", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Adieu", 0, {}
+                    2.0f, 1.0f, "Farewell", 0, {}
                 },
             },
             .next = {0}
@@ -270,33 +264,33 @@ Histoire histoire = {
             .nb_conversation = 4,
             .conversations = {
                 {
-                    // transition : Vous êtes derrière le bar l'Atout
-                    // mettre l'heure à 23h
-                    2.0f, 1.0f, "C'est toi le nouveau ?", 2, {
-                        "Je suis l'ami de Viola",
-                        "Oui, c'est moi",
+                    // transition: You are behind the Atout bar
+                    // set time to 11pm
+                    2.0f, 1.0f, "Are you the new guy?", 2, {
+                        "I'm Viola's friend",
+                        "Yes, I am."
 
                     },
                 },
                 {
-                    2.0f, 1.0f, "Moi c'est Minuit, je suis le chef des Purple Sky", 0, {},
+                    2.0f, 1.0f, "I'm Midnight, I'm the leader of the Purple Sky", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Et aussi l'ex de Viola", 2, {
-                        "D'accord",
-                        "En parlant de Viola, elle est en retard"
+                    2.0f, 1.0f, "And Viola's ex too", 2, {
+                        "Right."
+                        "Speaking of Viola, she's running late"
                     },
                 },
                 {
-                    2.0f, 1.0f, "J'entends les sirènes de police, il se passe quoi ?", 0, {},
+                    2.0f, 1.0f, "I hear police sirens, what's going on?", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Merde ! C'est trop proche, suis moi", 2, {
-                        "On fonce, c'est peut être Viola",
-                        "Euh ... tu es sûr qu'il faut y aller ?"
+                    2.0f, 1.0f, "Shit! It's too close, follow me", 2, {
+                        "Let's go, it could be Viola",
+                        "Uh ... are you sure we should go?"
                     },
                 },
-        }
+        },
         .next = {8, 9}
     },
 
@@ -305,19 +299,19 @@ Histoire histoire = {
             .nb_conversation = 2,
             .conversations = {
                 {
-                    2.0f, 1.0f, "C'est elle, je la reconnais", 2, {
-                        "Non, pas ça",
-                        "Il faut la sortir de là",
+                    2.0f, 1.0f, "That's her, I recognize her", 2, {
+                        "No, not that",
+                        "We've got to get her out of there",
 
                     },
                 },
                 {
-                    2.0f, 1.0f, "Bouge pas de là, je vais essayer d'aller voir", 2, {
-                        "Non, c'est trop dangereux. Les Purple Sky ne peuvent pas perdre leur chef",
-                        "D'accord, fais attention",
+                    2.0f, 1.0f, "Don't move, I'll try to go and see", 2, {
+                        "No, it's too dangerous. The Purple Sky can't lose their leader",
+                        "Okay, be careful",
                     },
                 },
-        }
+        },
         .next = {10, 11}
     },
 
@@ -326,12 +320,12 @@ Histoire histoire = {
             .nb_conversation = 2,
             .conversations = {
                 {
-                    2.0f, 1.0f, "Et tu veux faire quoi d'autre ? Si c'est Viola je ne te le pardonnerai pas, je pars seul", 0, {},
+                    2.0f, 1.0f, "And what else do you want to do? If it's Viola I won't forgive you, I'm going alone", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Fais le peureux si tu veux mais moi j'y vais", 0, {},
+                    2.0f, 1.0f, "Act like a coward if you want, but I'm going", 0, {},
                 },
-        }
+        },
         .next = {11}
     },
 
@@ -340,12 +334,12 @@ Histoire histoire = {
             .nb_conversation = 2,
             .conversations = {
                 {
-                    2.0f, 1.0f, "Tu as peut être raison, mais je ne peux pas perdre Viola", 0, {},
+                    2.0f, 1.0f, "You may be right, but I can't lose Viola", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Fais le peureux si tu veux mais moi j'y vais", 0, {},
+                    2.0f, 1.0f, "Act like a coward if you want, but I'm going", 0, {},
                 },
-        }
+        },
         .next = {11}
     },
 
@@ -354,18 +348,18 @@ Histoire histoire = {
             .nb_conversation = 3,
             .conversations = {
                 {
-                    2.0f, 1.0f, "Ne lui en veux pas trop, il tient beaucoup à elle", 0, {},
+                    2.0f, 1.0f, "Don't be too upset with him, he really cares about her", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Au fait, moi c'est Archie", 0, {},
+                    2.0f, 1.0f, "By the way, I'm Archie", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Je suis l'ami de Minuit, et donc membre des Purple Sky", 2, {
-                        "Euh... Enchanté je suppose",
-                        "Tu sors d'où comme ca ? Tu m'as fait peur",
+                    2.0f, 1.0f, "I'm Midnight's friend, and therefore a member of Purple Sky", 2, {
+                        "Er... Nice to meet you, I guess."
+                        "Where'd you come from? You scared me."
                     },
                 },
-        }
+        },
         .next = {12, 13}
     },
 
@@ -374,9 +368,9 @@ Histoire histoire = {
             .nb_conversation = 1,
             .conversations = {
                 {
-                    2.0f, 1.0f, "Enchanté", 0, {},
+                    2.0f, 1.0f, "Nice to meet you", 0, {},
                 },
-        }
+        },
         .next = {14}
     },
 
@@ -385,12 +379,12 @@ Histoire histoire = {
             .nb_conversation = 2,
             .conversations = {
                 {
-                    2.0f, 1.0f, "Je suis le garde du corps de Minuit", 0, {},
+                    2.0f, 1.0f, "I'm Midnight's bodyguard", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Donc je le suis partout où il va", 0, {},
+                    2.0f, 1.0f, "So I follow him wherever he goes", 0, {},
                 },
-        }
+        },
         .next = {14}
     },
 
@@ -399,15 +393,15 @@ Histoire histoire = {
             .nb_conversation = 3,
             .conversations = {
                 {
-                    2.0f, 1.0f, "D'ailleurs, on dirait que les sirènes se sont calmées", 0, {},
+                    2.0f, 1.0f, "By the way, it looks like the sirens have calmed down", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Et voilà Minuit qui revient", 0, {},
+                    2.0f, 1.0f, "Here comes Midnight again", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Moi je file, bonne chance, il à l'air en colère", 0, {},
+                    2.0f, 1.0f, "I'm off, good luck, he looks angry", 0, {},
                 },
-        }
+        },
         .next = {15}
     },
 
@@ -419,12 +413,12 @@ Histoire histoire = {
                     2.0f, 1.0f, "C'ETAIT VIOLA !!!", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "TOUT CA C'EST DE TA FAUTE ! C'EST TOI QUI LES A APPELES !", 2, {
-                        "QUOI ?! Bien sur que non",
-                        "Calme toi, c'est juste un coup de malchance"
+                    2.0f, 1.0f, "THIS IS ALL YOUR FAULT! YOU CALLED THEM!", 2, {
+                        "WHAT?! Of course not",
+                        "Calm down, it's just bad luck"
                     },
                 },
-        }
+        },
         .next = {16, 17}
     },
 
@@ -433,30 +427,31 @@ Histoire histoire = {
             .nb_conversation = 2,
             .conversations = {
                 {
-                    2.0f, 1.0f, "SI ! Je te faisais pas confiance et j'avais bien raison", 0, {},
+                    2.0f, 1.0f, "IF! I didn't trust you and I was right", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "Si tu es là pour foutre la merde, casse toi", 0, {},
+                    2.0f, 1.0f, "If you're here to cause trouble, get the hell out", 0, {},
                 },
 
-                // transition : Vous partez, laissant Minuit et Archie décider comment libérer Viola. Merci d'avoir joué à cette démo
-        }
+                // transition: You leave, leaving Midnight and Archie to decide how to free Viola. Thanks for playing this demo
+        },
         .next = {0}
     },
-
     [17] = {
             .personne = MINUIT,
             .nb_conversation = 2,
             .conversations = {
                 {
-                    2.0f, 1.0f, "LA MALCHANCE HEIN ?! ELLE APPELLE LES FLICS LA MALCHANCE ??", 0, {},
+                    2.0f, 1.0f, "BAD LUCK, HUH?! SHE CALLS THE COPS 'BAD LUCK'??", 0, {},
                 },
                 {
-                    2.0f, 1.0f, "*sors un pistolet laser* TU VA LA REJOINDRE EN ENFER, ORDURE", 0, {},
+                    2.0f, 1.0f, "*pulls out a laser gun* YOU'RE GOING TO JOIN HER IN HELL, SCUM", 0, {},
                 },
 
-                // transition : Minuit tire, vous tuant sur le coup. Merci d'avoir joué à cette démo
-        }
+                // transition: Midnight shoots, killing you instantly. Thank you for playing this demo.
+        },
         .next = {0}
+        }
     }
+
 };

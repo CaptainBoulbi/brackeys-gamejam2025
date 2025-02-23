@@ -300,7 +300,7 @@ int main()
                 DrawRectangleRec(choix_titre_box, BLACK);
 
                 DrawText(
-                    "Que voulez vous répondre ?",
+                    "What's your answer ?",
                     choix_titre_box.x + 12,
                     choix_titre_box.y + choix_titre_box.height*(1-0.69)/2,
                     choix_titre_box.height * 0.69,
@@ -315,10 +315,10 @@ int main()
 
                 int r = 0;
                 switch (s) {
-                    case 0: r = draw_1_choix(choix_box, "choix 1"); break;
-                    case 1: r = draw_2_choix(choix_box, "choix 1", "choix 2"); break;
-                    case 2: r = draw_3_choix(choix_box, "choix 1", "choix 2", "choix 3"); break;
-                    case 3: r = draw_4_choix(choix_box, "choix 1", "choix 2", "choix 3", "choix 4"); break;
+                    case 0: r = draw_1_choix(choix_box, "1st choice"); break;
+                    case 1: r = draw_2_choix(choix_box, "1st choice", "2nd choice"); break;
+                    case 2: r = draw_3_choix(choix_box, "1st choice", "2nd choice", "3rd choice"); break;
+                    case 3: r = draw_4_choix(choix_box, "1st choice", "2nd choice", "3rd choice", "4th choice"); break;
                 }
                 if (r) printf("%d\n", r);
             }
