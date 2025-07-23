@@ -16,11 +16,11 @@ typedef enum PersonneId {
 #define MAX_PERSONNE 5
 int personne_idx = 0;
 Personne personnes[MAX_PERSONNE] = {
-    [0] = { .name = "Viola" },
-    [1] = { .name = "Archie" },
-    [2] = { .name = "Minuit" },
-    [3] = { .name = "Phillip" },
-    [4] = { .name = "Ed" },
+    [VIOLA]   = { .name = "Viola" },
+    [ARCHIE]  = { .name = "Archie" },
+    [MINUIT]  = { .name = "Minuit" },
+    [PHILLIP] = { .name = "Phillip" },
+    [ED]      = { .name = "Ed" },
 };
 
 void init_personnes(void)
@@ -53,6 +53,15 @@ typedef struct Histoire {
     int nb_branche;
     Branche branches[NB_BRANCHE];
 } Histoire;
+
+typedef struct Historique {
+    int idx_branche;
+    int branche[NB_BRANCHE];
+    int idx_conv;
+    int conversation[NB_CONVERSATION_MAX];
+} Historique;
+
+Historique historique = {0};
 
 Histoire histoire = {
     .nb_branche = 3,

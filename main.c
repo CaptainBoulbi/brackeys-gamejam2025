@@ -10,6 +10,8 @@ int horloge_min = 9;
 
 #include "histoire.h"
 
+float timer = 0.0f;
+
 #define CHOIX_PAD 2
 #define CHOIX_COLOR WHITE
 #define CHOIX_COLOR_HOVER LIGHTGRAY
@@ -187,14 +189,19 @@ int main()
 
     Texture phone_battery_tex = LoadTexture("data/phone-battery.png");
     Texture left_arrow_tex = LoadTexture("data/left-arrow.png");
-
     init_personnes();
+
+    historique.idx_branche = 1;
+    historique.branche[0] = 0;
+    historique.conversation[0] = 0;
 
     while (!WindowShouldClose()) {
         if (IsWindowResized()) {
             window.x = GetScreenWidth();
             window.y = GetScreenHeight();
         }
+
+        timer += GetFrameTime();
 
         Rectangle phone_box = {
             window.x/2-window.y/3, 0,
@@ -225,6 +232,31 @@ int main()
                     notif_box.y
                 }, 0, phone_battery_scale, WHITE
             );
+
+            Branche branche = histoire.branches[historique.branche[historique.idx_branche-1]];
+            Conversation conv = branche.conversations[historique.conversation[historique.idx_conv-1]];
+
+            personnes[branche.personne].message = conv.question;
+
+            if (!personnes[branche.personne].active && timer > conv.read_time) {
+                personnes[branche.personne].active = 1;
+            }
+
+            if (IsKeyPressed(KEY_SPACE)) {
+                printf("idx branche = %d\n", historique.idx_branche);
+                printf("idx conv = %d\n", historique.idx_conv);
+                historique.idx_conv++;
+                historique.conversation[historique.idx_conv] = 0; // idx de la reponse
+                if (historique.idx_conv >= branche.nb_conversation) {
+                    historique.idx_conv = 0;
+                    historique.idx_branche++;
+                    historique.branche[historique.idx_branche] = 
+                        historique.branche[historique.idx_branche-1]+1;
+                    if (historique.idx_branche > histoire.nb_branche) {
+                        printf("fin du monde\n");
+                    }
+                }
+            }
 
             static int choix_active = 0;
             if (!choix_active) {
@@ -321,9 +353,14 @@ int main()
                     case 3: r = draw_4_choix(choix_box, "choix 1", "choix 2", "choix 3", "choix 4"); break;
                 }
                 if (r) printf("%d\n", r);
+
+                if (timer > conv.read_time) {
+                    DrawText(conv.question, 500, 500, 50, ORANGE);
+                }
             }
 
-            DrawFPS(0,0);
+            DrawFPS(window.x - 100, 10);
+            DrawText(TextFormat("timer = %.01f", timer), 5, 25, 25, WHITE);
         }
         EndDrawing();
     }
